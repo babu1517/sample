@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:replace="header::menu"></div>
+<style>
+    ul {
+    text-align:center;
+    margin-top: 20px;
+    }
+    ul li {
+    list-style-type: none;
+    display: inline-block;
+    margin-right: 10px;
+    }
+    .pagination{
+    margin : 0 auto;
+    width:100%;
+    }
+    th{
+    text-align:center;
+    }
+
+</style>
+<body>
+<h2 style="text-align:center">자료 입력</h2>
+<table border="1" align="center" width="800" style="text-align:center">
+    <tr>
+        <th>글번호</th>
+        <th>작성자</th>
+        <th>제목</th>
+        <th>작성일자</th>
+        <th>조회수</th>
+        <th>표지</th>
+    </tr>
+    <tr th:each="list : ${list}">
+        <td th:text="${list.id}"></td>
+        <td><a th:href="@{detail(id=${list.id})}" th:text="${list.name}"></a></td>
+        <td th:text="${list.title}"></td>
+        <td th:text="${#temporals.format(list.writeday, 'yyyy년MM월dd일')}"></td>
+        <td th:text="${list.readcnt}"></td>
+        <td>
+            <img th:src="@{/image/}+${list.picture}" width="80" height="60">
+        </td>
+    </tr>
+    <!--
+     <tr>
+         <td colspan="20" align="center">
+    <ul>
+        <li th:each="page : ${#numbers.sequence(0, totalPage - 1)}">
+            <a th:href="@{out(page=${pageStat.index})}" th:text="${pageStat.index + 1}"></a>
+        </li>
+    </ul>
+         </td>
+     </tr>
+     -->
+</table>
+<div class="pagination">
+    <ul>
+        <li th:each="page : ${#numbers.sequence(0, totalPage -1)}">
+            <a th:href="@{/out(page=${pageStat.index})}" th:text="${pageStat.index+1}"></a>
+        </li>
+    </ul>
+</div>
+
+</body>
+
+</html>

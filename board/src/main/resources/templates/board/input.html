@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:replace="header::menu"></div>
+<style>
+    p{
+    color:red;
+    }
+
+</style>
+<body>
+<h2 style="text-align:center">자료 입력</h2>
+<form action="inputsave" method="post" modelAttribute="boardDTO" th:object="${boardDTO}">
+    <table border="1" align="center">
+        <tr>
+            <th>작성자</th>
+            <td>
+                <input type="text" th:field="*{name}" required>
+                <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
+            </td>
+        </tr>
+        <tr>
+            <th>제목</th>
+            <td>
+                <input type="text" name="title" required>
+            </td>
+        </tr>
+        <tr>
+            <th>내용</th>
+            <td>
+                <textarea rows="10" cols="20" name="content" required></textarea>
+            </td>
+        </tr>
+        <tr>
+            <th>표지</th>
+            <td>
+                <input type="file" name="picture" accept=" text/plain, image/jpeg, audio/mpeg, image/*" required>
+            </td>
+        </tr>
+
+        <tr>
+            <td><input type="submit" value="전송"></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

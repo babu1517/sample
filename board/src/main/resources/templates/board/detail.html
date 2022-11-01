@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:replace="header::menu"></div>
+<body>
+<h2 style="text-align:center">자세히보기</h2>
+<form action="updatesave" method="post">
+    <table border="1" align="center">
+        <input type="text" name="id" th:value="${boardEntity.id}" hidden>
+        <tr>
+            <th>작성자</th>
+            <td><input type="text" name="name" th:value="${boardEntity.name}" required></td>
+        </tr>
+        <tr>
+            <th>제목</th>
+            <td><input type="text" name="title" th:value="${boardEntity.title}" required></td>
+        </tr>
+        <tr>
+            <th>내용</th>
+            <td><textarea rows="10" cols="20" name="content" th:text="${boardEntity.content}" required></textarea>
+            </td>
+        </tr>
+        <tr>
+            <th>표지</th>
+            <td>
+                <input type="file" name="picture" accept=" text/plain, image/jpeg, audio/mpeg, image/*" required>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="25"><input type="submit" value="수정">
+                <input type="button" value="돌아가기" th:onclick="|location.href='out'|">
+            </td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>
